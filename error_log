@@ -1,0 +1,3 @@
+[30-Jun-2017 05:11:02 UTC] PHP Fatal error:  Call to undefined function wp_get_attachment() in /home/amazingp/rentals.amazing-pattaya.com/wp-content/themes/wprentals/templates/property_pictures3.php on line 94
+[30-Jun-2017 05:11:07 UTC] PHP Fatal error:  Call to undefined function wpestate_show_custom_details() in /home/amazingp/rentals.amazing-pattaya.com/wp-content/themes/wprentals/templates/listing_page_1.php on line 172
+[30-Jun-2017 05:11:27 UTC] PHP Fatal error:  Call to undefined function wpestate_show_custom_details() in /home/amazingp/rentals.amazing-pattaya.com/wp-content/themes/wprentals/templates/listing_page_1.php on line 172

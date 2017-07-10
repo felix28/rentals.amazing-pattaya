@@ -1,0 +1,137 @@
+/*
+Theme Name: WpRentals Child theme
+Theme URI: http://themeforest.net/user/annapx
+Description: Ultimate WordPress Theme created by WP Estate for accomodation booking. WP Rentals is clean, flexible, fully responsive and retina Ready. Its smart settings allows you to build outstanding renting websites easy and fast.
+Version: 1.00
+Author: wpestate
+Author URI: http://themeforest.net/user/annapx
+Tags: white, one-column, two-columns,left-sidebar, right-sidebar, fluid-layout , custom-menu, theme-options, translation-ready
+License: GNU General Public License v2.0
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Template:     wprentals
+Text Domain:  wpestate-child
+-------------------------------------------------------------- */
+
+
+#colophon .listing_title_unit{
+    color: #9DA5B9!important;
+}
+
+
+#topbarregister:before{
+    content: "";
+    background-image: url('css/css-images/header_icons.png');
+ }
+
+
+
+#topbarlogin:before{
+    content:"";
+    background-image: url('css/css-images/header_icons.png');
+}
+
+.property_location .inforoom {
+    font-size: 13px;
+    background-image: url('./css/css-images/icon_bed1.png');
+}
+
+.property_location .infoguest {
+    font-size: 13px;
+    background-image: url('./css/css-images/icon_bath1.png');
+ }
+
+
+.property_location .infosize {
+    background-image: url('./css/css-images/icon-size1.png');
+}
+
+
+.panel-title-arrow {
+    background-image: url('css/css-images/property_arrows.png');
+}
+
+.panel-title.collapsed .panel-title-arrow {
+    background-image: url('css/css-images/property_arrows.png');
+    background-position: 2px 0px;
+}
+
+.calendar_icon:after {
+    content: " ";
+    background-image: url('css/css-images/calendar_icon.png');
+}
+
+.rooms_icon:after {
+    content: " ";
+    background-image: url('css/css-images/door_icon.png');
+ }
+
+.types_icon:after {
+    content: " ";
+    background-image: url('css/css-images/types_icon.png');
+}
+
+.actions_icon:after {
+    content: " ";
+    background-image: url('css/css-images/category_icon.png');
+ }
+
+.bedrooms_icon:after {
+    content: " ";
+    background-image: url('css/css-images/bedrooms_icon.png');
+}
+
+.baths_icon:after {
+    content: " ";
+    background-image: url('css/css-images/bathrooms_icon.png');
+ 
+}
+
+
+#guest_no_mobile:after,
+#booking_guest_no_wrapper:after,
+#guest_no_widget:after,
+#guest_no:after{
+    background-image: url('css/css-images/icon_guest.png');
+
+}
+
+
+.map_icon:after {
+    background-image: url('css/css-images/icon_pin.png');
+
+}
+
+#geolocation-button,
+#gmap-full,
+#gmap-next,
+#gmap-prev,
+#gmapstreet,
+#gmapzoomplus,
+#gmapzoomminus{
+    background-image: url('css/css-images/mapicons.png');
+
+}
+
+#infocloser{
+    background-image: url('./css/css-images/closeicon.png');
+}
+
+#infoguest{
+
+    background-image: url('./css/css-images/icon_bath.png');
+
+}
+
+#inforoom{
+    float: right;
+    background-image: url('./css/css-images/icon_bed.png');
+
+}
+
+
+#infosize{
+
+    background-image: url('./css/css-images/icon-size.png');
+}
+
+

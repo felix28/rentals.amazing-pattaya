@@ -1,0 +1,20 @@
+Sunday, 18-Jun-2017 15:12:10 - backup started
+Sunday, 18-Jun-2017 15:12:10 - wp version     : 4.7.5
+Sunday, 18-Jun-2017 15:12:10 - php version    : 5.6.30
+Sunday, 18-Jun-2017 15:12:10 - mysql version  : 5.5.5
+Sunday, 18-Jun-2017 15:12:10 - memory limit   : 1024M
+Sunday, 18-Jun-2017 15:12:10 - execution time : 600
+Sunday, 18-Jun-2017 15:12:10 - mysql timeout  : 600
+Sunday, 18-Jun-2017 15:12:10 - socket timeout : 600
+Sunday, 18-Jun-2017 15:12:10 - files larger than 25 MB will be excluded from the backup
+Sunday, 18-Jun-2017 15:12:10 - generating file list
+Sunday, 18-Jun-2017 15:12:10 - file skipped, file is larger than 25 MB - "**SITE-ROOT**/wp-content/themes/wprentals.zip"  34.32 MB
+Sunday, 18-Jun-2017 15:12:10 - 1 files were excluded from the backup
+Sunday, 18-Jun-2017 15:12:10 - number of files to include in the archive is 8440, and their uncompressed size is 318.14 MB
+Sunday, 18-Jun-2017 15:12:10 - finished generating file list
+Sunday, 18-Jun-2017 15:12:10 - database backup started
+Sunday, 18-Jun-2017 15:12:10 - backing up tables with "wpkv_" prefix
+Sunday, 18-Jun-2017 15:12:10 - number of tables to backup - 20
+Sunday, 18-Jun-2017 15:12:10 - database backup finished
+Sunday, 18-Jun-2017 15:12:10 - archiving files using ziparchive
+Sunday, 18-Jun-2017 15:13:07 - backup finished
