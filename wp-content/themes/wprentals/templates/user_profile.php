@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="/wp-content/themes/wprentals/libs/intl/css/intlTelInput.css" />
 <?php
 $current_user = wp_get_current_user();
 $userID                 =   $current_user->ID;
@@ -21,6 +22,7 @@ $image_id               =   get_the_author_meta( 'small_custom_picture',$userID)
 $about_me               =   get_the_author_meta( 'description' , $userID );
 $live_in                =   get_the_author_meta( 'live_in' , $userID );
 $i_speak                =   get_the_author_meta( 'i_speak' , $userID );
+$i_speak = ($i_speak == '') ? 'English, Thai' : $i_speak;
 $paypal_payments_to     =   get_the_author_meta( 'paypal_payments_to' , $userID );
 $payment_info           =   get_the_author_meta( 'payment_info' , $userID );
   
@@ -232,3 +234,6 @@ if($user_custom_picture==''){
 
 
  </div>
+ <script src="/wp-content/themes/wprentals/libs/intl/js/intlTelInput.js"></script>
+ <script src="/wp-content/themes/wprentals/libs/intl/js/intlmain.js"></script>
+ <script src="/wp-content/themes/wprentals/libs/intl/js/utils.js"></script>
