@@ -13,6 +13,8 @@ global $property_country;
 global $property_description;
 global $property_admin_area;
 global $instant_booking;
+
+if ($property_city == '')    $property_city = 'Pattaya';
 ?>
 
 

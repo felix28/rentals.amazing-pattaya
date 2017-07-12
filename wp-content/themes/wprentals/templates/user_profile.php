@@ -1,4 +1,6 @@
 <link rel="stylesheet" href="/wp-content/themes/wprentals/libs/intl/css/intlTelInput.css" />
+<link rel="stylesheet" href="/wp-content/themes/wprentals/libs/country-select/css/countrySelect.css" />
+
 <?php
 $current_user = wp_get_current_user();
 $userID                 =   $current_user->ID;
@@ -105,7 +107,7 @@ if($user_custom_picture==''){
                        
                     <p>
                     <label for="live_in"><?php esc_html_e('I live in','wpestate');?></label>
-                       <input type="text" id="live_in"  class="form-control" value="<?php echo $live_in;?>"  name="live_in">
+                       <input type="text" id="live_in"  class="form-control intl-country" value="<?php echo $live_in;?>"  name="live_in">
                     </p>
                        
                     <p>
@@ -129,8 +131,8 @@ if($user_custom_picture==''){
                         <input type="text" id="userphone" class="form-control" value="<?php echo $user_phone;?>"  name="userphone">
                     </p>
                     <p>
-                        <label for="usermobile"><?php esc_html_e('Mobile (*Add the country code format Ex :+1 232 3232)','wpestate');?></label>
-                        <input type="text" id="usermobile" class="form-control" value="<?php echo $user_mobile;?>"  name="usermobile">
+                        <label for="usermobile"><?php esc_html_e('Mobile','wpestate');?></label>
+                        <input type="text" id="usermobile" class="form-control intl-phone" value="<?php echo $user_mobile;?>"  name="usermobile">
                     </p>
 
                     <p>
@@ -237,3 +239,5 @@ if($user_custom_picture==''){
  <script src="/wp-content/themes/wprentals/libs/intl/js/intlTelInput.js"></script>
  <script src="/wp-content/themes/wprentals/libs/intl/js/intlmain.js"></script>
  <script src="/wp-content/themes/wprentals/libs/intl/js/utils.js"></script>
+ <script src="/wp-content/themes/wprentals/libs/country-select/js/countrySelect.js"></script>
+  <script src="/wp-content/themes/wprentals/libs/country-select/js/countrySelectMain.js"></script>
