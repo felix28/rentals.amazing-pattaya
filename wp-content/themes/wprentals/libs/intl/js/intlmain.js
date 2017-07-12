@@ -1,7 +1,7 @@
 jQuery(document).ready(function($){
     // get the country data from the plugin
     var countryData = $(this).intlTelInput.getCountryData(),
-           telInput = $("#userphone");
+           telInput = $(".intl-phone");
     
     // init plugin
     telInput.intlTelInput({initialCountry:'th'});
