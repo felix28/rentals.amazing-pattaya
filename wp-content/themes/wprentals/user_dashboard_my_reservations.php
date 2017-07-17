@@ -88,9 +88,7 @@ if( isset($_POST['wpestate_prop_title']) ){
                 <h1 class="entry-title listings-title-dash"><?php the_title(); ?></h1>
             <?php } ?>
                 
-            <div class="back_to_home">
-                <a href="<?php echo home_url();?>" title="home url"><?php esc_html_e('Front page','wpestate');?></a>  
-            </div> 
+            <?php get_template_part('templates/home_link'); ?> 
         </div>    
         
         <div class="search_dashborad_header">
