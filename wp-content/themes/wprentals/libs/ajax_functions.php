@@ -1661,6 +1661,12 @@ if( !function_exists('wpestate_ajax_register_form') ):
                 if(intval($_POST['user_type'])==0){
                     wpestate_register_as_user($user_name,$user_id);
                 }
+                
+                global $wpdb;
+                $wpdb->update($wpdb->users, 
+                            array("is_first_time_fb_google_logged_in" => false), 
+                            array("ID" => $user_id) 
+                        );
             }
              
         } else {

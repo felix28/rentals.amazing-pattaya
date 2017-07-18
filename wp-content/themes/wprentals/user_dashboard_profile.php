@@ -132,7 +132,28 @@ get_header();
             <div class="dashboard-header">
                 <?php if (esc_html( get_post_meta($post->ID, 'page_show_title', true) ) != 'no') { ?>
                     <h1 class="entry-title entry-title-profile"><?php the_title(); ?></h1>
-                <?php } ?>
+                <?php   
+                $users = $wpdb->get_results("SELECT is_first_time_fb_google_logged_in 
+                                             FROM $wpdb->users WHERE ID='".$current_user->ID."'");
+                $first_time = $users[0]->is_first_time_fb_google_logged_in; 
+                    if ($first_time) {
+                ?>
+                        <h6>
+                            Welcome! We send you a password via e-mail.
+                        </h6>
+                <?php
+                        $new_password = wp_generate_password(12, false);//length,with_special_char?
+                        $random_password = sanitize_text_field(wp_kses($new_password));
+                        $wpdb->update($wpdb->users, 
+                                      array("is_first_time_fb_google_logged_in" => false
+                                      ), 
+                                      array("ID" => $current_user->ID) 
+                                );
+                        wp_set_password($random_password, $current_user->ID);
+                        wpestate_wp_new_user_notification($current_user->ID, $random_password);    
+                    }
+                } 
+                ?>
                     
                 <?php get_template_part('templates/home_link'); ?> 
             </div>
