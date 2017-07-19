@@ -149,8 +149,8 @@
         }
         
     }
-       
-        
+    
+    if ($post->ID == 444)    $style = 'style="margin-top:0px;"';
     ?>
 
     <body <?php body_class($is_top_bar_class); ?>> 
@@ -169,7 +169,7 @@
                  <?php get_template_part('templates/mobile_menu_header'); ?>    
                     
 
-                    <div class="header_wrapper <?php echo $transparent_class . $is_top_bar_class .' '. $header_type .' '. $header_align .' '. $header_wide; ?>">
+                    <div class="header_wrapper <?php echo $transparent_class . $is_top_bar_class .' '. $header_type .' '. $header_align .' '. $header_wide; ?>" <?=$style;?> >
                         <div class="header_wrapper_inside">
                             <?php $logo_margin = intval(get_option('wp_estate_logo_margin', '')); ?>
                             <div class="logo" <?php echo 'style="margin-top:' . $logo_margin . 'px"'; ?>> 
@@ -254,6 +254,4 @@ if ($map_template === 1) {
         print '  <div class="content_wrapper ' . $wide_page_class . 'row ">';
     }
 }
-
-
 ?>

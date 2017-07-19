@@ -1916,6 +1916,7 @@ button.close:hover{
 .header_wrapper {
     width: 100%;
     margin: 0px auto;
+    margin-top: 40px;
 /*    height: 70px;*/
 }
 
@@ -2214,7 +2215,7 @@ button.close:hover{
 .customnav{
     opacity: 0.95;
     background-color: #fff;
-   
+    margin-top: 0px;
 }
 
 .customnav:hover{
