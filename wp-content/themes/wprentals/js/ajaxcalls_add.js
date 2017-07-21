@@ -521,6 +521,10 @@ function allin_one_owner_insert_book_internal() {
     });
 
     $('#close_reservation_internal').click(function () {
+        clearUnavailable();    
+    });
+    
+    function clearUnavailable(){
         var start_remove = 0;
         $('.calendar-reserved').each(function () {
             if ($(this).hasClass('calendar-reserved-start')) {
@@ -538,6 +542,13 @@ function allin_one_owner_insert_book_internal() {
                 start_remove = 0;
             }
         });
+    }
+
+    $(document).keydown(function(e) {
+        // ESCAPE key pressed
+        if (e.keyCode == 27 && $('#close_reservation_internal').length) {
+            clearUnavailable();
+        }
     });
 
     function submit_change() {
