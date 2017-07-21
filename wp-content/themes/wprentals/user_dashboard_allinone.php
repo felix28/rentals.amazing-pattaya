@@ -106,12 +106,12 @@ $options=wpestate_page_details($post->ID);
              
                     <div class="col-md-6">
                         <label for="start_date_owner_book"><?php esc_html_e('Start Date','wpestate');?></label>
-                        <input type="text" id="start_date_owner_book" size="40" name="booking_from_date" class="form-control" value="">
+                        <input type="text" id="start_date_owner_book" size="40" name="booking_from_date" class="form-control" value="" readonly="readonly" />
                     </div>
 
                     <div class="col-md-6">
                         <label for="end_date_owner_book"><?php  esc_html_e('End Date','wpestate');?></label>
-                        <input type="text" id="end_date_owner_book" size="40" name="booking_to_date" class="form-control" value="">
+                        <input type="text" id="end_date_owner_book" size="40" name="booking_to_date" class="form-control" value="" readonly="readonly" />
                     </div>
                         
               
