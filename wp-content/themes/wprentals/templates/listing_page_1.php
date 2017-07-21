@@ -433,5 +433,5 @@ $guest_list= wpestate_get_guest_dropdown('noany');
         <?php  include(locate_template('sidebar-listing.php')); ?>
     </div>
 </div>   
-
+<script src="/wp-content/themes/wprentals/js/moment.min.js"></script>
 <?php get_footer(); ?>

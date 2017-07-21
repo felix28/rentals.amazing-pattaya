@@ -1,4 +1,13 @@
 /*global $, jQuery, ajaxcalls_vars, document, control_vars, window, map, setTimeout, Modernizr, property_vars*/
+jQuery(document).ready(function($) {
+    //on amazing-pattaya.com/properties/propertyname, when user selects start date, this is the default end date
+    $("#start_date").on("change", function() {
+        var endDate = moment(moment(this.value).add(2, 'd'));
+        $("#end_date").val(endDate.format('YYYY-MM-DD'));
+        $('#end_date').change();
+    });
+});
+
 jQuery(window).scroll(function ($) {
     "use strict";
     var scroll = jQuery(window).scrollTop();
