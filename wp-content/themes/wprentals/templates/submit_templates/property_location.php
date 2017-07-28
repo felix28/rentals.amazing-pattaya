@@ -57,7 +57,7 @@ global $edit_link_amenities;
             <div class="col-md-3">
                  <p>
                      <label for="property_county"><?php esc_html_e('County','wpestate');?></label>
-                     <input type="text" id="property_county" class="form-control" size="40" name="property_state" value="<?php print $property_county?>">
+                     <input type="text" id="property_county" class="form-control" size="40" name="property_county" value="<?php print $property_county?>">
                  </p>
              </div>
             
