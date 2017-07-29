@@ -2,13 +2,19 @@
 // Template Name: Import Property Page
 ?>
 <h1>Import Property</h1>
-<h2>Please be patient. Import might take about 1 minute.</h2>
+<h2 style="color: red">
+    Please be patient. Import might take about 2 minutes. Don't refresh the page
+</h2>
 <form method="post">
-    <div>Put your property key here: <input type="text" name="propKey" /></div>
+    <div>
+        <label for="propKey">Put your property key here:</label> 
+        <input type="text" name="propKey" id="propKey" />
+    </div>
     <div><input type="submit" name="submit" value="Import" /></div>
 </form>
 <?php 
 if (isset($_POST['submit']) && strlen(trim($_POST['propKey'])) > 0) {
+    require 'libs/simple_html_dom.php';
 	//API
 	$authentication = array();
 	$authentication['apiKey'] = 'y[JKp"r:>QxE3,QH';
@@ -41,6 +47,9 @@ if (isset($_POST['submit']) && strlen(trim($_POST['propKey'])) > 0) {
 	$property = json_decode($result, true);
 	//for ($r = 0; $r < 1; $r++) {
     for ($r = 0; $r < count($property['getProperty'][0]['roomTypes']); $r++) {
+        //PHP simple HTML DOM parser
+        $propID = $property['getProperty'][0]['propId'];
+        $html = file_get_html('https://beds24.com/booking2.php?propid='.$propID);
 		//description
 		$title            = $property['getProperty'][0]['roomTypes'][$r]['name'];
 		$category         = intval(5); //apartment
@@ -50,10 +59,12 @@ if (isset($_POST['submit']) && strlen(trim($_POST['propKey'])) > 0) {
 		$city             = wp_kses($property['getProperty'][0]['city'],$allowed_html);
 		$neighborhood     = wp_kses($property['getProperty'][0]['address'],$allowed_html);
 		$country          = wp_kses('Thailand',$allowed_html);
-		$description      = '';
+        $property_desc    = $html->find('div.at_offersummary')[$r]->innertext;
+		$description      = wp_kses($property_desc, $allowed_html);
 		$isInstantBooking = 0;            
 		$status           = 'pending';
-		$owner            = 6;
+		//$owner            = 6;//dev
+        $owner            = 8;//felix.labayen
 		//price
 		$price            = floatval($property['getProperty'][0]['roomTypes'][$r]['minPrice']);
         //location
@@ -62,18 +73,23 @@ if (isset($_POST['submit']) && strlen(trim($_POST['propKey'])) > 0) {
         $state            = wp_kses($property['getProperty'][0]['state']);
         //iCalendar
         $iCal             = $property['getProperty'][0]['roomTypes'][$r]['icalExportUrl'];
-
-	    $post = create_new_property($title, $category, $roomType, $guestNo, $city, $neighborhood, $country,
-		$description, $isInstantBooking, $price, $latitude, $longitude, $state, $iCal);
-        /*echo 'post id is: '.$post;
-        echo "<br />";*/
-	    /*echo $property['getProperty'][0]['roomTypes'][$r]['name'];
-	    echo '<br />';	*/
+        
+        if ($title != "CANCEL" || $price > 0) {        
+            $postID = create_new_property($title, $category, $roomType, $guestNo, $city, $neighborhood,      $country, $description, $isInstantBooking, $price, $latitude, $longitude, $state,      $iCal);
+            if (count($property['getProperty'][0]['roomTypes']) <= 7) {//8 rooms
+            //image
+            $smallImg = $html->find('img')[$r]->src;
+            $imgURL = str_replace('.100', '', $smallImg); //img big version
+            uploadImageToMediaLibrary($postID, $imgURL);
+            }    
+        }
 	}
 	header('location: import-property');
 }
+
 function create_new_property($title, $category, $roomType, $guestNo, $city, $neighborhood, $country,
-	$description, $isInstantBooking, $price, $latitude, $longitude, $state, $iCal){
+	$description, $isInstantBooking, $price, $latitude, $longitude, $state, $iCal)
+{
 	$post = array(
 	    'post_title'	=> $title,
 	    'post_status'	=> $status, 
@@ -172,6 +188,59 @@ function create_new_property($title, $category, $roomType, $guestNo, $city, $nei
         }
     return $post_id;
 	}
+}
+
+function uploadImageToMediaLibrary($postID, $url, $alt = "Imported Property") 
+{
+    require_once("wp-load.php");
+    require_once("wp-admin/includes/image.php");
+    require_once("wp-admin/includes/file.php");
+    require_once("wp-admin/includes/media.php");
+
+    $tmp = download_url( $url );
+    $desc = $alt;
+    $file_array = array();
+
+    // Set variables for storage
+    // fix file filename for query strings
+    preg_match('/[^\?]+\.(jpg|jpe|jpeg|gif|png)/i', $url, $matches);
+    $file_array['name'] = basename($matches[0]);
+    $file_array['tmp_name'] = $tmp;
+
+    // If error storing temporarily, unlink
+    if ( is_wp_error( $tmp ) ) {
+        @unlink($file_array['tmp_name']);
+        $file_array['tmp_name'] = '';
+    }
+
+    // do the validation and storage stuff
+    $id = media_handle_sideload( $file_array, $postID, $desc);
+    
+    //start set as featured image
+    $file_loc   =   $file_array['tmp_name'];
+    $file_name  =   $file_array['name'];
+    $file_type  =   wp_check_filetype($file_name);
+
+    $attachment = array(
+        'post_mime_type' => $file_type,
+        'post_title' => preg_replace('/\.[^.]+$/', '', basename($file_name)),
+        'post_content' => '',
+        'post_status' => 'inherit'
+    );
+
+    $attach_id      =   wp_insert_attachment($attachment, $file_loc);
+    $attach_data    =   wp_generate_attachment_metadata($attach_id, $file_loc);
+    wp_update_attachment_metadata($attach_id, $attach_data);
+    add_post_meta($postID, '_thumbnail_id', $id); 
+    //done set as featured image
+
+    // If error storing permanently, unlink
+    if (is_wp_error($id)) {
+        @unlink($file_array['tmp_name']);
+        return $id;
+    }
+
+    return $id;
 }
 //get_footer(); 
 ?>
