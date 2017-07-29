@@ -1,5 +1,7 @@
 <?php
 // Template Name: Import Property Page
+$current_user = wp_get_current_user();
+$userID                         =   $current_user->ID;
 ?>
 <h1>Import Property</h1>
 <h2 style="color: red">
@@ -64,7 +66,8 @@ if (isset($_POST['submit']) && strlen(trim($_POST['propKey'])) > 0) {
 		$isInstantBooking = 0;            
 		$status           = 'pending';
 		//$owner            = 6;//dev
-        $owner            = 8;//felix.labayen
+        //$owner            = 8;//felix.labayen
+        $owner            = $userID;
 		//price
 		$price            = floatval($property['getProperty'][0]['roomTypes'][$r]['minPrice']);
         //location
