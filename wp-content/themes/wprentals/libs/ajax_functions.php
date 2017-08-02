@@ -1898,7 +1898,7 @@ if( !function_exists('wpestate_ajax_forgot_pass') ):
  
         if ( strpos($user_input, '@') ) {
                 $user_data = get_user_by( 'email', $user_input );
-                if(empty($user_data) || isset( $user_data->caps['administrator'] ) ) {
+                if(empty($user_data)) {
                     echo'Invalid E-mail address!';
                     exit();
                 }
