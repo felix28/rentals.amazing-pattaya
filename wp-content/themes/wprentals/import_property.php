@@ -78,13 +78,7 @@ if (isset($_POST['submit']) && strlen(trim($_POST['propKey'])) > 0) {
         $iCal             = $property['getProperty'][0]['roomTypes'][$r]['icalExportUrl'];
         
         if ($title != "CANCEL" || $price > 0) {        
-            $postID = create_new_property($title, $category, $roomType, $guestNo, $city, $neighborhood,      $country, $description, $isInstantBooking, $price, $latitude, $longitude, $state,      $iCal);
-            if (count($property['getProperty'][0]['roomTypes']) <= 7) {//8 rooms
-            //image
-            $smallImg = $html->find('img')[$r]->src;
-            $imgURL = str_replace('.100', '', $smallImg); //img big version
-            uploadImageToMediaLibrary($postID, $imgURL);
-            }    
+            $postID = create_new_property($title, $category, $roomType, $guestNo, $city, $neighborhood,      $country, $description, $isInstantBooking, $price, $latitude, $longitude, $state,      $iCal);               
         }
 	}
 	header('location: import-property');
